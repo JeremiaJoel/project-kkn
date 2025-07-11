@@ -27,6 +27,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('UMKM Plamongan Sari')
+            ->sidebarFullyCollapsibleOnDesktop()
+            ->topNavigation()
             ->login()
             ->colors([
                 'primary' => Color::Indigo,

@@ -19,22 +19,32 @@ class RWResource extends Resource
 {
     protected static ?string $model = RW::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
     protected static ?string $navigationLabel = 'RW';
     public static ?string $slug = 'kelola-rw';
     public static ?string $label = 'kelola rw';
-
+    // protected static ?string $navigationGroup = 'Kelola';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('ketua_rw')
-                    ->label('Nama ketua RW'),
+                    ->label('Nama ketua RW')
+                    ->required(),
                 TextInput::make('nama_rw')
-                    ->label('Nama RW'),
+                    ->label('Nama RW')
+                    ->required(),
                 TextInput::make('alamat')
-                    ->label('Alamat RW'),
+                    ->label('Alamat RW')
+                    ->required(),
                 TextInput::make('kontak')
+                    ->label('nomor telepon')
+                    ->required()
+                    ->tel()
+                    ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+                    ->validationMessages([
+                        'regex' => 'Nomor telepon tidak valid',
+                    ]),
             ]);
     }
 
@@ -54,7 +64,7 @@ class RWResource extends Resource
                 //
             ])
             ->actions([
-                
+
                 Tables\Actions\EditAction::make(),
             ]);
         // ->bulkActions([

@@ -8,4 +8,19 @@ class Umkm extends Model
 {
     //
     protected $table = 'Umkm';
+    protected $fillable = [
+        'nama_umkm',
+        'pemilik',
+        'kategori',
+        'deskripsi',
+        'alamat',
+        'kontak',
+        'foto',
+        'instagram',
+        'whatsapp',
+        'shopee',
+        'tokopedia',
+        'tiktok',
+        'rw_id'
+    ];
 }

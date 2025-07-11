@@ -23,29 +23,33 @@ use Filament\Forms\Components\FileUpload;
 class BeritaResource extends Resource
 {
     protected static ?string $model = Berita::class;
+    // protected static ?string $navigationGroup = 'Kelola';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationLabel = 'Berita UMKM';
     public static ?string $slug = 'kelola-berita';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('Judul')
-                    ->label('Judul berita'),
+                TextInput::make('judul')
+                    ->label('Judul berita')
+                    ->required(),
                 TextArea::make('isi_berita')
-                    ->label('Isi'),
+                    ->label('Isi')
+                    ->required(),
                 DatePicker::make('tanggal')
                     ->label('Tanggal Publikasi')
                     ->required(),
 
                 FileUpload::make('thumbnail')
-                    ->label('Gambar Thumbnail')
+                    ->label('Foto')
                     ->image()
-                    ->directory('berita-thumbnails') // folder di storage/app/public/
+                    ->multiple() // ⬅️ ini penting
+                    ->directory('berita-galeri') // storage/app/public/berita-galeri
                     ->imagePreviewHeight('150')
-                    ->maxSize(2048) // dalam KB (2048 KB = 2MB)
-                    ->required(),
+                    ->required()
+                    ->maxSize(2048)
             ]);
     }
 

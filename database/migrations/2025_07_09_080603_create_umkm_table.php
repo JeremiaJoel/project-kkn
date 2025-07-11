@@ -20,6 +20,11 @@ return new class extends Migration
             $table->text('alamat')->nullable();
             $table->string('kontak')->nullable();
             $table->string('foto')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string("shopee")->nullable();
+            $table->string('tokopedia')->nullable();
+            $table->string('tiktok')->nullable();
             $table->foreignId('rw_id')->constrained('rw')->onDelete('cascade');
             $table->timestamps();
         });
