@@ -17,6 +17,8 @@ use App\Filament\Resources\UmkmResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UmkmResource\RelationManagers;
 
+use function Laravel\Prompts\select;
+
 class UmkmResource extends Resource
 {
     protected static ?string $model = Umkm::class;
@@ -48,6 +50,10 @@ class UmkmResource extends Resource
                 TextInput::make('alamat')
                     ->label('Lokasi UMKM')
                     ->required(),
+                Select::make('rw_id')
+                    ->label('Lokasi RW')
+                    ->required()
+                    ->options([]),
                 FileUpload::make('foto')
                     ->image()
                     ->multiple() // ⬅️ ini penting

@@ -45,7 +45,7 @@
                     src="https://storage.googleapis.com/a1aa/image/c7b01238-31fa-49d0-3e2c-01ab007ccad4.jpg"
                     width="40" />
                 <span class="text-darkyellow font-extrabold">
-                    Desa Modern
+                    Website UMKM Plamongan Sari
                 </span>
             </a>
             <nav>
@@ -63,6 +63,11 @@
                     <li>
                         <a class="hover:text-darkyellow transition" href="#berita">
                             Berita
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:text-darkyellow transition" href="#berita">
+                            Detail UMKM
                         </a>
                     </li>
                 </ul>
@@ -91,6 +96,7 @@
                         Berita
                     </a>
                 </li>
+
             </ul>
         </div>
     </header>
@@ -100,7 +106,7 @@
             <div class="md:flex md:items-center">
                 <div class="md:w-1/2 p-8">
                     <h1 class="text-4xl md:text-5xl font-extrabold text-darkbrown mb-4 leading-tight">
-                        Selamat Datang di Desa Modern
+                        Selamat Datang di Website UMKM Plamongan Sari
                     </h1>
                     <p class="text-gray-700 mb-6 text-lg">
                         Desa yang maju, bersih, dan ramah lingkungan. Mari bersama membangun masa depan yang lebih baik.
@@ -113,8 +119,7 @@
                 <div class="md:w-1/2">
                     <img alt="Ilustrasi desa modern dengan rumah-rumah minimalis, pohon hijau, dan langit cerah dengan warna coklat tua dan kuning tua"
                         class="w-full h-auto object-cover rounded-r-lg shadow-lg" height="400"
-                        src="https://storage.googleapis.com/a1aa/image/0149b604-1154-4ae9-d35e-b19b9dda3f8e.jpg"
-                        width="600" />
+                        src="{{ asset('/img/foto kelurahan.jpg') }}" width="600" />
                 </div>
             </div>
         </section>
@@ -202,7 +207,7 @@
         <section class="mb-20" id="berita">
             <h2
                 class="text-3xl font-bold text-darkbrown mb-8 text-center border-b-4 border-darkyellow inline-block pb-2">
-                Berita Terbaru
+                Berita UMKM
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
