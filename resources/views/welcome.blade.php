@@ -7,6 +7,17 @@
         Desa Modern - Beranda
     </title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -45,28 +56,13 @@
                     src="https://storage.googleapis.com/a1aa/image/c7b01238-31fa-49d0-3e2c-01ab007ccad4.jpg"
                     width="40" />
                 <span class="text-darkyellow font-extrabold">
-                    Website UMKM Plamongan Sari
+                    Website UMKM RW
                 </span>
             </a>
             <nav>
                 <ul class="hidden md:flex space-x-10 font-semibold text-darkbrown">
                     <li>
-                        <a class="hover:text-darkyellow transition" href="#profil">
-                            Profil Kelurahan
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:text-darkyellow transition" href="#data-rw">
-                            Data RW
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:text-darkyellow transition" href="#berita">
-                            Berita
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:text-darkyellow transition" href="#berita">
+                        <a class="hover:text-darkyellow transition" href="{{ route('katalog') }}">
                             Detail UMKM
                         </a>
                     </li>
@@ -106,15 +102,12 @@
             <div class="md:flex md:items-center">
                 <div class="md:w-1/2 p-8">
                     <h1 class="text-4xl md:text-5xl font-extrabold text-darkbrown mb-4 leading-tight">
-                        Selamat Datang di Website UMKM Plamongan Sari
+                        Selamat Datang di Website Pemasaran UMKM RW
                     </h1>
                     <p class="text-gray-700 mb-6 text-lg">
-                        Desa yang maju, bersih, dan ramah lingkungan. Mari bersama membangun masa depan yang lebih baik.
+                        Platform digital untuk memperkenalkan dan memasarkan produk unggulan warga RW. Temukan beragam
+                        UMKM lokal yang siap bersaing dan berkontribusi bagi kemajuan ekonomi masyarakat.
                     </p>
-                    <a class="inline-block bg-darkyellow text-darkbrown px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-darkyellow-light transition"
-                        href="#profil">
-                        Pelajari Profil Kelurahan
-                    </a>
                 </div>
                 <div class="md:w-1/2">
                     <img alt="Ilustrasi desa modern dengan rumah-rumah minimalis, pohon hijau, dan langit cerah dengan warna coklat tua dan kuning tua"
@@ -124,53 +117,6 @@
             </div>
         </section>
         <!-- Profil Kelurahan -->
-        <section class="mb-20" id="profil">
-            <h2
-                class="text-3xl font-bold text-darkbrown mb-8 text-center border-b-4 border-darkyellow inline-block pb-2">
-                Profil Kelurahan
-            </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div
-                    class="bg-white border-2 border-darkyellow rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <img alt="Foto kantor kelurahan modern dengan bangunan berwarna coklat tua dan taman kuning tua di depan"
-                        class="rounded-full mb-4 w-36 h-36 object-cover shadow-md" height="150"
-                        src="https://storage.googleapis.com/a1aa/image/23be98be-4779-4b43-aacb-692fd17981df.jpg"
-                        width="150" />
-                    <h3 class="text-xl font-semibold text-darkbrown mb-2">
-                        Kantor Kelurahan
-                    </h3>
-                    <p class="text-gray-700">
-                        Kantor kelurahan kami melayani masyarakat dengan ramah dan profesional setiap hari kerja.
-                    </p>
-                </div>
-                <div
-                    class="bg-white border-2 border-darkyellow rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <img alt="Gambar ilustrasi sejarah desa dengan buku dan peta kuno berwarna coklat tua dan kuning tua"
-                        class="rounded-full mb-4 w-36 h-36 object-cover shadow-md" height="150"
-                        src="https://storage.googleapis.com/a1aa/image/b96d403b-fc2a-464d-3c8a-5c9d203b463f.jpg"
-                        width="150" />
-                    <h3 class="text-xl font-semibold text-darkbrown mb-2">
-                        Sejarah Desa
-                    </h3>
-                    <p class="text-gray-700">
-                        Desa ini berdiri sejak tahun 1920 dengan tradisi dan budaya yang kaya dan terjaga.
-                    </p>
-                </div>
-                <div
-                    class="bg-white border-2 border-darkyellow rounded-lg shadow p-6 flex flex-col items-center text-center">
-                    <img alt="Ilustrasi visi dan misi desa dengan ikon target dan panah berwarna coklat tua dan kuning tua"
-                        class="rounded-full mb-4 w-36 h-36 object-cover shadow-md" height="150"
-                        src="https://storage.googleapis.com/a1aa/image/b4f20efa-bb4a-41fe-2a57-e3c37e98bb04.jpg"
-                        width="150" />
-                    <h3 class="text-xl font-semibold text-darkbrown mb-2">
-                        Visi &amp; Misi
-                    </h3>
-                    <p class="text-gray-700">
-                        Mewujudkan desa yang mandiri, berkelanjutan, dan sejahtera melalui inovasi dan gotong royong.
-                    </p>
-                </div>
-            </div>
-        </section>
         <!-- Data RW -->
         <section class="mb-20" id="data-rw">
             <h2
@@ -178,30 +124,41 @@
                 Data RW
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="bg-white border-2 border-darkbrown rounded-lg shadow p-6 flex flex-col">
-                    <h3 class="text-2xl font-bold text-darkyellow mb-4 border-b-2 border-darkyellow pb-2">
-                        RW 01
-                    </h3>
-                    <img alt="Foto ketua RW 01, pria paruh baya mengenakan kemeja batik coklat tua berdiri di depan kantor RW dengan latar belakang putih"
-                        class="w-full h-48 object-cover rounded-md mb-4 shadow" height="400"
-                        src="https://storage.googleapis.com/a1aa/image/8f4b478a-292f-44ac-a66c-d78d1101fb55.jpg"
-                        width="600" />
-                    <p class="mb-2 font-semibold text-darkbrown">
-                        Ketua RW: Budi Santoso
-                    </p>
-                    <p class="mb-2 text-darkbrown">
-                        Jumlah KK: 120
-                    </p>
-                    <p class="mb-2 text-darkbrown">
-                        Jumlah Penduduk: 450
-                    </p>
-                    <p class="font-semibold text-darkyellow">
-                        <a class="hover:underline" href="tel:+628123456789">
-                            0812-3456-789
-                        </a>
-                    </p>
-                </div>
+                @foreach ($rws as $rw)
+                    <div class="bg-white border-2 border-darkbrown rounded-lg shadow p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold text-darkyellow mb-4 border-b-2 border-darkyellow pb-2">
+                            {{ $rw->nama_rw }}
+                        </h3>
 
+                        {{-- <img alt="Foto ketua {{ $rw->nama_rw }}"
+                            class="w-full h-48 object-cover rounded-md mb-4 shadow"
+                            src="{{ $rw->foto ?? 'https://via.placeholder.com/600x400?text=Foto+RW' }}" height="400"
+                            width="600" /> --}}
+
+                        <p class="mb-2 font-semibold text-darkbrown">
+                            Ketua RW: {{ $rw->ketua_rw }}
+                        </p>
+
+                        <p class="mb-2 text-darkbrown">
+                            Jumlah UMKM
+                        </p>
+                        <p class="mb-2 text-darkbrown">
+                            Alamat : {{ $rw->alamat }}
+                        </p>
+                        <p class="font-semibold text-darkyellow">
+                            <a class="hover:underline" href="tel:{{ $rw->kontak }}">
+                                {{ $rw->kontak }}
+                            </a>
+                        </p>
+
+                    </div>
+                @endforeach
+
+            </div>
+            <a class="inline-block m-3 bg-darkyellow text-darkbrown p-3 rounded-lg font-semibold shadow-md hover:bg-darkyellow-light transition text-center"
+                href="#">
+                Jelajahi Detail UMKM
+            </a>
         </section>
         <!-- Berita -->
         <section class="mb-20" id="berita">
@@ -209,116 +166,61 @@
                 class="text-3xl font-bold text-darkbrown mb-8 text-center border-b-4 border-darkyellow inline-block pb-2">
                 Berita UMKM
             </h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto warga desa sedang melakukan gotong royong membersihkan lingkungan dengan alat sapu dan karung sampah dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/a8199784-a6c4-429f-bb92-d98f2540daa1.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Kegiatan Gotong Royong Bersih Desa
-                        </h3>
-                        <p class="flex-grow">
-                            Warga desa bersama-sama melaksanakan gotong royong membersihkan lingkungan desa demi
-                            kenyamanan bersama.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            10 Juni 2024
-                        </time>
-                    </div>
-                </article>
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto petani desa sedang mengikuti pelatihan pertanian modern dengan instruktur dan alat pertanian canggih dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/b7637166-a042-4f92-6ed4-efe62b631d15.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Pelatihan Pertanian Modern
-                        </h3>
-                        <p class="flex-grow">
-                            Desa mengadakan pelatihan pertanian modern untuk meningkatkan hasil panen dan kesejahteraan
-                            petani.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            5 Juni 2024
-                        </time>
-                    </div>
-                </article>
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto festival budaya desa dengan warga mengenakan pakaian tradisional dan pertunjukan tari dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/c3c1f254-d1b9-4d01-21f5-b4b6e9720211.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Festival Budaya Desa
-                        </h3>
-                        <p class="flex-grow">
-                            Festival budaya tahunan yang menampilkan kesenian dan tradisi khas desa kami yang kaya akan
-                            nilai sejarah.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            28 Mei 2024
-                        </time>
-                    </div>
-                </article>
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto pembangunan jalan desa dengan alat berat dan pekerja konstruksi sedang mengaspal jalan dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/fc05f090-cbd3-41ce-afd6-5ce982eed938.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Pembangunan Jalan Desa
-                        </h3>
-                        <p class="flex-grow">
-                            Proyek pembangunan jalan desa untuk meningkatkan aksesibilitas dan konektivitas antar RW.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            20 Mei 2024
-                        </time>
-                    </div>
-                </article>
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto petugas kesehatan desa memberikan pelayanan kesehatan gratis kepada warga di balai desa dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/7a9106f4-e0fe-44de-299a-0ce6996719f9.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Pelayanan Kesehatan Gratis
-                        </h3>
-                        <p class="flex-grow">
-                            Pemerintah desa menyediakan pelayanan kesehatan gratis untuk meningkatkan kualitas hidup
-                            warga.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            15 Mei 2024
-                        </time>
-                    </div>
-                </article>
-                <article class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
-                    <img alt="Foto warga desa menanam pohon di area terbuka sebagai bagian dari program penghijauan desa dengan warna coklat tua dan kuning tua"
-                        class="w-full h-48 object-cover rounded-t-lg shadow" height="350"
-                        src="https://storage.googleapis.com/a1aa/image/0061b0b3-a00c-432c-e11b-b33723947f5b.jpg"
-                        width="600" />
-                    <div class="p-6 flex flex-col flex-grow text-darkbrown">
-                        <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
-                            Program Penghijauan Desa
-                        </h3>
-                        <p class="flex-grow">
-                            Inisiatif penghijauan desa untuk menjaga kelestarian lingkungan dan meningkatkan kualitas
-                            udara.
-                        </p>
-                        <time class="mt-4 text-sm text-darkyellow">
-                            10 Mei 2024
-                        </time>
-                    </div>
-                </article>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($berita as $index => $item)
+                    <article
+                        class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
+                        {{-- Gambar Slide --}}
+                        @php
+
+                            if (is_array($item->thumbnail)) {
+                                $gambarList = $item->thumbnail;
+                            } elseif (is_string($item->thumbnail)) {
+                                $decoded = json_decode($item->thumbnail, true);
+                                $gambarList = is_array($decoded) ? $decoded : [$item->thumbnail];
+                            }
+                            $swiperId = 'swiper-berita-' . $index;
+                        @endphp
+
+                        <div class="swiper {{ $swiperId }} rounded-t-lg">
+                            <div class="swiper-wrapper">
+                                @foreach ($gambarList as $gambar)
+                                    <div class="swiper-slide">
+                                        <img src="{{ asset('storage/' . $gambar) }}" alt="Gambar berita"
+                                            class="w-full h-48 object-cover m-2" />
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex flex-col flex-grow text-darkbrown">
+                            <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
+                                {{ $item->judul }}
+                            </h3>
+                            <p class="flex-grow">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($item->isi_berita), 120, '...') }}
+                            </p>
+                            <time class="mt-4 text-sm text-darkyellow">
+                                {{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}
+                            </time>
+
+                            <button
+                                class="mt-4 inline-block bg-darkyellow text-darkbrown px-4 py-2 rounded shadow font-semibold hover:bg-darkyellow-light transition text-center btn-detail-berita"
+                                data-id="{{ $item->id }}" data-judul="{{ $item->judul }}"
+                                data-isi="{{ strip_tags($item->isi_berita) }}"
+                                data-tanggal="{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}"
+                                data-gambar="{{ is_array($item->thumbnail) ? json_encode($item->thumbnail) : json_encode([$item->thumbnail]) }}"
+                                data-bs-toggle="modal" data-bs-target="#modalDetailBerita">
+                                Lihat Detail
+                            </button>
+
+                        </div>
+                    </article>
+                @endforeach
             </div>
         </section>
+
     </main>
     <footer class="bg-white border-t border-darkyellow text-darkbrown py-8">
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left md:flex md:justify-between md:items-center">
@@ -370,7 +272,80 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const swipers = document.querySelectorAll('.swiper');
+            swipers.forEach((el) => {
+                new Swiper(el, {
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    slidesPerView: 1,
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            new Swiper('.berita-swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+                slidesPerView: 1,
+            });
+        });
+
+        $(document).ready(function() {
+            $(".btn-detail-berita").on("click", function() {
+                var beritaId = $(this).data("id");
+
+                $.ajax({
+                    url: "/berita/detail/" + beritaId,
+                    type: "GET",
+                    success: function(response) {
+                        // Set teks
+                        $("#modal-judul").text(response.judul);
+                        $("#modal-isi").text(response.isi_berita);
+                        $("#modal-tanggal").text(response.tanggal);
+
+                        // Kosongkan dulu gambar sebelumnya
+                        $("#modal-gambar-wrapper").empty();
+
+                        // Ambil thumbnail (array JSON)
+                        let thumbnails = [];
+
+                        try {
+                            thumbnails = typeof response.thumbnail === "string" ?
+                                JSON.parse(response.thumbnail) :
+                                response.thumbnail;
+                        } catch (e) {
+                            thumbnails = [];
+                        }
+
+                        // Loop gambar
+                        thumbnails.forEach(function(path) {
+                            const fullPath = "/storage/" + path;
+                            const imgTag =
+                                `<img src="${fullPath}" class="rounded shadow w-full h-48 object-cover mb-2" alt="Foto berita">`;
+                            $("#modal-gambar-wrapper").append(imgTag);
+                        });
+
+                        // Tampilkan modal
+                        $("#modalDetailBerita").modal("show");
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                        alert("Terjadi kesalahan, coba lagi nanti.");
+                    }
+                });
+            });
+        });
     </script>
+    @include('components.modal-berita')
+
 </body>
 
 </html>

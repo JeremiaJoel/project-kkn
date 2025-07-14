@@ -16,4 +16,7 @@ class Berita extends Model
         'umkm_id',
         'rw_id'
     ];
+    protected $casts = [
+        'thumbnail' => 'array',
+    ];
 }
