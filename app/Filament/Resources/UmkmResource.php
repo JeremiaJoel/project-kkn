@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use App\Models\Umkm;
+use App\Models\rw;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -37,7 +38,15 @@ class UmkmResource extends Resource
                 TextInput::make('pemilik')
                     ->label('Nama Pemilik UMKM')
                     ->required(),
-                Select::make('status')
+                TextInput::make('kontak')
+                    ->label('nomor telepon')
+                    ->required()
+                    ->tel()
+                    ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+                    ->validationMessages([
+                        'regex' => 'Nomor telepon tidak valid',
+                    ]),
+                Select::make('kategori')
                     ->required()
                     ->options([
                         'makanan' => 'Makanan',
@@ -53,8 +62,9 @@ class UmkmResource extends Resource
                 Select::make('rw_id')
                     ->label('Lokasi RW')
                     ->required()
-                    ->options([]),
+                    ->options(Rw::pluck('nama_rw', 'id')), // ['id' => 'nama_rw']
                 FileUpload::make('foto')
+                    ->label('Foto')
                     ->image()
                     ->multiple() // ⬅️ ini penting
                     ->directory('berita-galeri') // storage/app/public/berita-galeri

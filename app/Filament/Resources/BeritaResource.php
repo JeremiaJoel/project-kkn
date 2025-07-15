@@ -8,8 +8,10 @@ use App\Models\Berita;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\TextArea;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\DatePicker;
@@ -18,7 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BeritaResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BeritaResource\RelationManagers;
-use Filament\Tables\Actions\Action;
 
 
 
@@ -70,7 +71,12 @@ class BeritaResource extends Resource
                     ->label('Tanggal Publikasi')
                     ->date('d M Y')
                     ->sortable(),
+
+                ViewColumn::make('thumbnail_preview')
+                    ->label('Preview Gambar')
+                    ->view('components.modal-gambar'),
             ])
+            ->recordUrl(null) // ⬅️ Matikan klik otomatis pada baris
             ->filters([
                 //
             ])
@@ -78,6 +84,7 @@ class BeritaResource extends Resource
                 Tables\Actions\EditAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {

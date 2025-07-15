@@ -53,10 +53,13 @@ class RWResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('nama_rw')
+                    ->label('Nama RW'),
                 TextColumn::make('ketua_rw')
                     ->label('Nama ketua RW'),
                 TextColumn::make('alamat')
-                    ->label('Alamat'),
+                    ->label('Alamat')
+                    ->limit(50),
                 TextColumn::make('kontak')
 
             ])

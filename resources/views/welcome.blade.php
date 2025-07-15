@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>
-        Desa Modern - Beranda
+        Landing Page Website Pemasaran UMKM
     </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Swiper CSS -->
@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -183,16 +184,37 @@
                             $swiperId = 'swiper-berita-' . $index;
                         @endphp
 
-                        <div class="swiper {{ $swiperId }} rounded-t-lg">
-                            <div class="swiper-wrapper">
-                                @foreach ($gambarList as $gambar)
-                                    <div class="swiper-slide">
-                                        <img src="{{ asset('storage/' . $gambar) }}" alt="Gambar berita"
-                                            class="w-full h-48 object-cover m-2" />
-                                    </div>
-                                @endforeach
-                            </div>
+                        <div x-data="{
+                            currentSlide: 0,
+                            images: {{ json_encode($gambarList) }},
+                            next() {
+                                this.currentSlide = (this.currentSlide + 1) % this.images.length;
+                            },
+                            prev() {
+                                this.currentSlide = (this.currentSlide - 1 + this.images.length) % this.images.length;
+                            }
+                        }"
+                            class="relative w-full aspect-[4/3] overflow-hidden rounded-t-lg border-2 border-darkyellow bg-white">
+                            <!-- Gambar -->
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentSlide === index" x-transition :src="'/storage/' + image"
+                                    alt="Gambar berita" class="absolute inset-0 w-full h-full object-contain" />
+                            </template>
+
+                            <!-- Tombol Kiri -->
+                            <button @click="prev"
+                                class="absolute top-1/2 left-2 -translate-y-1/2 bg-darkyellow text-darkbrown px-2 py-1 rounded shadow hover:bg-darkyellow-light">
+                                ‹
+                            </button>
+
+                            <!-- Tombol Kanan -->
+                            <button @click="next"
+                                class="absolute top-1/2 right-2 -translate-y-1/2 bg-darkyellow text-darkbrown px-2 py-1 rounded shadow hover:bg-darkyellow-light">
+                                ›
+                            </button>
                         </div>
+
+
 
                         <div class="p-6 flex flex-col flex-grow text-darkbrown">
                             <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">

@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <title>
         Pemasaran UMKM RW - Katalog UMKM
     </title>
@@ -13,20 +18,21 @@
                 extend: {
                     colors: {
                         darkbrown: {
-                            DEFAULT: '#4B2E05',
-                            light: '#6B4F1D',
-                            dark: '#3A2203',
+                            DEFAULT: '#9d1b0e',
+                            light: '#b32518',
+                            dark: '#791309',
                         },
                         darkyellow: {
-                            DEFAULT: '#D4A017',
-                            light: '#E6B93B',
-                            dark: '#A67C0A',
+                            DEFAULT: '#e3a434',
+                            light: '#f4bb55',
+                            dark: '#c58b2b',
                         },
                     },
                 },
             },
         }
     </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
@@ -40,11 +46,7 @@
     <header class="bg-white shadow-md fixed w-full z-30 border-b border-darkyellow">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <a class="text-2xl font-bold text-darkbrown flex items-center space-x-2" href="#home">
-                <img alt="Logo desa modern berwarna coklat tua dan kuning tua dengan simbol rumah dan pohon"
-                    class="w-10 h-10" height="40"
-                    src="https://storage.googleapis.com/a1aa/image/c7b01238-31fa-49d0-3e2c-01ab007ccad4.jpg"
-                    width="40" />
-                <span class="text-darkyellow font-extrabold">
+                <span class="font-extrabold">
                     Website UMKM RW
                 </span>
             </a>
@@ -59,8 +61,7 @@
                 <button aria-label="Toggle menu"
                     class="md:hidden text-darkbrown focus:outline-none focus:ring-2 focus:ring-darkyellow"
                     id="menu-btn">
-                    <i class="fas fa-bars fa-lg">
-                    </i>
+                    <i class="fas fa-bars fa-lg"></i>
                 </button>
             </nav>
         </div>
@@ -84,6 +85,7 @@
             </ul>
         </div>
     </header>
+
     <main class="pt-24 max-w-7xl mx-auto px-6">
         <!-- Katalog UMKM -->
         <section class="mb-20" id="katalog-umkm">
@@ -122,15 +124,74 @@
                     ],
                 ];
             @endphp
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach ($umkms as $index => $umkm)
+                    @php
+                        if (is_array($umkm->foto)) {
+                            $gambarList = $umkm->foto;
+                        } elseif (is_string($umkm->foto)) {
+                            $decoded = json_decode($umkm->foto, true);
+                            $gambarList = is_array($decoded) ? $decoded : [$umkm->foto];
+                        }
+                    @endphp
 
-            <div class="flex space-x-4 text-2xl text-darkyellow">
-                @foreach ($sosmedLinks as $field => $data)
-                    @if (!empty($umkm->$field))
-                        <a href="{{ $data['prefix'] . $umkm->$field }}" class="hover:text-darkyellow-light"
-                            rel="noopener noreferrer" target="_blank" aria-label="{{ ucfirst($field) }}">
-                            {!! $data['icon'] !!}
-                        </a>
-                    @endif
+                    <article
+                        class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
+                        <!-- Gambar -->
+                        <div x-data="{
+                            currentSlide: 0,
+                            images: {{ json_encode($gambarList) }},
+                            next() {
+                                this.currentSlide = (this.currentSlide + 1) % this.images.length;
+                            },
+                            prev() {
+                                this.currentSlide = (this.currentSlide - 1 + this.images.length) % this.images.length;
+                            }
+                        }"
+                            class="relative w-full aspect-[4/3] overflow-hidden rounded-t-lg border-2 border-darkyellow bg-white">
+                            <template x-for="(image, index) in images" :key="index">
+                                <img x-show="currentSlide === index" x-transition :src="'/storage/' + image"
+                                    alt="Foto UMKM" class="absolute inset-0 w-full h-full object-contain" />
+                            </template>
+
+                            <button @click="prev"
+                                class="absolute top-1/2 left-2 -translate-y-1/2 bg-darkyellow text-darkbrown px-2 py-1 rounded shadow hover:bg-darkyellow-light">
+                                ‹
+                            </button>
+                            <button @click="next"
+                                class="absolute top-1/2 right-2 -translate-y-1/2 bg-darkyellow text-darkbrown px-2 py-1 rounded shadow hover:bg-darkyellow-light">
+                                ›
+                            </button>
+                        </div>
+
+                        <!-- Info UMKM -->
+                        <div class="p-6 flex flex-col flex-grow text-darkbrown">
+                            <h3 class="text-xl font-semibold mb-2 border-b border-darkyellow pb-1">
+                                {{ $umkm->nama_umkm }}
+                            </h3>
+
+                            <p class="text-sm italic mb-1">Pemilik: {{ $umkm->pemilik }}</p>
+                            <p class="flex-grow">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($umkm->deskripsi), 120, '...') }}</p>
+
+                            <div class="mt-4 text-sm">
+                                <span class="font-semibold">Alamat:</span><br>
+                                {{ $umkm->alamat }}
+                            </div>
+
+                            <div class="mt-4 flex space-x-4 text-2xl text-darkyellow">
+                                @foreach ($sosmedLinks as $field => $data)
+                                    @if (!empty($umkm->$field))
+                                        <a href="{{ $umkm->$field }}" class="hover:text-darkyellow-light"
+                                            rel="noopener noreferrer" target="_blank"
+                                            aria-label="{{ ucfirst($field) }}">
+                                            {!! $data['icon'] !!}
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </article>
                 @endforeach
             </div>
 

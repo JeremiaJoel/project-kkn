@@ -23,4 +23,8 @@ class Umkm extends Model
         'tiktok',
         'rw_id'
     ];
+
+    protected $casts = [
+        'foto' => 'array',
+    ];
 }
