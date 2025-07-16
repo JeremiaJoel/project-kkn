@@ -25,14 +25,14 @@
                 extend: {
                     colors: {
                         darkbrown: {
-                            DEFAULT: '#4B2E05',
-                            light: '#6B4F1D',
-                            dark: '#3A2203',
+                            DEFAULT: '#9d1b0e',
+                            light: '#b32518',
+                            dark: '#791309',
                         },
                         darkyellow: {
-                            DEFAULT: '#D4A017',
-                            light: '#E6B93B',
-                            dark: '#A67C0A',
+                            DEFAULT: '#e3a434',
+                            light: '#f4bb55',
+                            dark: '#c58b2b',
                         },
                     },
                 },
@@ -45,47 +45,98 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        /* Gradient background for full left column */
+        .hero-text-bg {
+            background: linear-gradient(135deg, #800000 0%, #9d1b0e 50%, #e3a434 100%);
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            padding: 3rem 2rem;
+            color: white;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            height: 100%;
+        }
+
+        /* Text shadows for readability */
+        .hero-text-bg h1,
+        .hero-text-bg p {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Rounded corners for image */
+        .hero-image img {
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 767px) {
+            .hero-text-bg {
+                border-radius: 1rem;
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+
+            .hero-image img {
+                border-radius: 1rem;
+                margin-top: 1.5rem;
+                height: auto;
+            }
+        }
+
+        /* Define custom colors if not already defined */
+        .text-darkbrown {
+            color: #5C4033;
+            /* example dark brown */
+        }
+
+        .hover\:text-darkyellow:hover {
+            color: #B8860B;
+            /* dark yellow / goldenrod */
+        }
     </style>
 </head>
 
-<body class="bg-white text-darkbrown">
-    <header class="bg-white shadow-md fixed w-full z-30 border-b border-darkyellow">
+
+<body class="bg-white">
+
+    <header class="bg-[#7B1010] shadow-md fixed w-full z-30">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a class="text-2xl font-bold text-darkbrown flex items-center space-x-2" href="#home">
-                <img alt="Logo desa modern berwarna coklat tua dan kuning tua dengan simbol rumah dan pohon"
-                    class="w-10 h-10" height="40"
-                    src="https://storage.googleapis.com/a1aa/image/c7b01238-31fa-49d0-3e2c-01ab007ccad4.jpg"
-                    width="40" />
-                <span class="text-darkyellow font-extrabold">
+            <a class="text-3xl font-bold text-darkbrown flex items-center space-x-2" href="#home">
+                <span class="text-white font-extrabold">
                     Website UMKM RW
                 </span>
             </a>
             <nav>
                 <ul class="hidden md:flex space-x-10 font-semibold text-darkbrown">
                     <li>
-                        <a class="hover:text-darkyellow transition" href="{{ route('katalog') }}">
-                            Detail UMKM
+                        <a class="text-white text-xl hover:text-darkyellow transition-colors duration-200"
+                            href="{{ route('katalog') }}">
+                            Katalog UMKM
                         </a>
                     </li>
                 </ul>
-                <button aria-label="Toggle menu"
-                    class="md:hidden text-darkbrown focus:outline-none focus:ring-2 focus:ring-darkyellow"
-                    id="menu-btn">
-                    <i class="fas fa-bars fa-lg">
-                    </i>
+                <button aria-label="Toggle menu" class="md:hidden text-darkbrown focus:outline-none" id="menu-btn">
+                    <i class="fas fa-bars fa-lg"></i>
                 </button>
             </nav>
         </div>
         <div class="md:hidden bg-white shadow-md hidden border-t border-darkyellow" id="mobile-menu">
             <ul class="flex flex-col space-y-3 px-6 py-4 font-semibold text-darkbrown">
                 <li>
-                    <a class="block hover:text-darkyellow transition" href="#profil">
-                        Profil Kelurahan
+                    <a class="text-white text-xl hover:text-darkyellow transition-colors duration-200"
+                        href="{{ route('katalog') }}">
+                        Katalog UMKM
                     </a>
                 </li>
+
                 <li>
-                    <a class="block hover:text-darkyellow transition" href="#data-rw">
-                        Data RW
+                    <a class="block hover:text-darkyellow transition" href="#profil">
+                        Profil Kelurahan
                     </a>
                 </li>
                 <li>
@@ -93,41 +144,60 @@
                         Berita
                     </a>
                 </li>
-
             </ul>
         </div>
     </header>
-    <main class="pt-24 max-w-7xl mx-auto px-6">
+    <!-- Loader -->
+    <div id="page-loader"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-300">
+        <div class="flex gap-2">
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow [animation-delay:-0.3s]"></div>
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow [animation-delay:-0.15s]"></div>
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow"></div>
+        </div>
+    </div>
+
+    <main class="pt-24 max-w-full px-5">
+
         <!-- Hero Section -->
-        <section class="relative bg-white rounded-lg shadow-lg overflow-hidden mb-16" id="home">
-            <div class="md:flex md:items-center">
-                <div class="md:w-1/2 p-8">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-darkbrown mb-4 leading-tight">
-                        Selamat Datang di Website Pemasaran UMKM RW
-                    </h1>
-                    <p class="text-gray-700 mb-6 text-lg">
-                        Platform digital untuk memperkenalkan dan memasarkan produk unggulan warga RW. Temukan beragam
-                        UMKM lokal yang siap bersaing dan berkontribusi bagi kemajuan ekonomi masyarakat.
-                    </p>
-                </div>
+        <section class="relative mb-16 w-full mx-auto rounded-lg shadow-lg overflow-hidden" id="home">
+            <div class="flex flex-col md:flex-row md:items-stretch w-full">
+                <!-- Kolom Kiri: Background Gradient -->
                 <div class="md:w-1/2">
-                    <img alt="Ilustrasi desa modern dengan rumah-rumah minimalis, pohon hijau, dan langit cerah dengan warna coklat tua dan kuning tua"
-                        class="w-full h-auto object-cover rounded-r-lg shadow-lg" height="400"
-                        src="{{ asset('/img/foto kelurahan.jpg') }}" width="600" />
+                    <div class="hero-text-bg h-full flex flex-col justify-center">
+                        <h1
+                            class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-lg">
+                            Selamat Datang di <span class="text-yellow-400">Website Pemasaran UMKM RW</span>
+                        </h1>
+                        <p class="mt-6 text-lg sm:text-xl max-w-xl drop-shadow-md">
+                            Platform digital untuk memperkenalkan dan memasarkan produk unggulan warga RW. Temukan
+                            beragam UMKM
+                            lokal yang siap bersaing dan berkontribusi bagi kemajuan ekonomi masyarakat.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Gambar -->
+                <div class="hero-image md:w-1/2 h-80 md:h-auto">
+                    <img alt="Ilustrasi desa modern dengan rumah-rumah minimalis, pohon hijau, dan langit cerah"
+                        src="{{ asset('/img/foto kelurahan.jpg') }}" />
                 </div>
             </div>
         </section>
+
         <!-- Profil Kelurahan -->
         <!-- Data RW -->
-        <section class="mb-20" id="data-rw">
-            <h2
-                class="text-3xl font-bold text-darkbrown mb-8 text-center border-b-4 border-darkyellow inline-block pb-2">
-                Data RW
-            </h2>
+        <section class="mb-20 mx-auto px-6" id="data-rw">
+            <div class="flex justify-center">
+                <h2 class="text-3xl font-bold text-darkbrown mb-8 border-b-4 border-darkyellow inline-block pb-2">
+                    Data RW
+                </h2>
+            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($rws as $rw)
-                    <div class="bg-white border-2 border-darkbrown rounded-lg shadow p-6 flex flex-col">
-                        <h3 class="text-2xl font-bold text-darkyellow mb-4 border-b-2 border-darkyellow pb-2">
+                    <div
+                        class="bg-white border-2 border-darkbrown rounded-2xl shadow-lg p-8 flex flex-col hover:shadow-2xl transition-shadow duration-300 group cursor-pointer w-[300px]">
+                        <h3 class="text-2xl font-bold text-black     mb-4 border-b-2 border-darkyellow pb-2">
                             {{ $rw->nama_rw }}
                         </h3>
 
@@ -162,16 +232,17 @@
             </a>
         </section>
         <!-- Berita -->
-        <section class="mb-20" id="berita">
-            <h2
-                class="text-3xl font-bold text-darkbrown mb-8 text-center border-b-4 border-darkyellow inline-block pb-2">
-                Berita UMKM
-            </h2>
+        <section class="mb-20 mx-auto px-6" id="berita">
+            <div class="flex justify-center">
+                <h2 class="text-3xl font-bold text-darkbrown mb-8 border-b-4 border-darkyellow inline-block pb-2">
+                    Berita UMKM
+                </h2>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[1400px]">
                 @foreach ($berita as $index => $item)
                     <article
-                        class="bg-white border-2 border-darkyellow rounded-lg shadow overflow-hidden flex flex-col">
+                        class="bg-white border-2 border-darkbrown rounded-2xl shadow-lg p-3 flex flex-col hover:shadow-2xl transition-shadow duration-300 group cursor-pointer">
                         {{-- Gambar Slide --}}
                         @php
 
@@ -281,92 +352,115 @@
         </div>
     </footer>
     <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
         });
+    </script>
+</body>
 
-        // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+</html>
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
         });
+    });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const swipers = document.querySelectorAll('.swiper');
-            swipers.forEach((el) => {
-                new Swiper(el, {
-                    loop: true,
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
-                    slidesPerView: 1,
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            new Swiper('.berita-swiper', {
+    document.addEventListener('DOMContentLoaded', function() {
+        const swipers = document.querySelectorAll('.swiper');
+        swipers.forEach((el) => {
+            new Swiper(el, {
                 loop: true,
                 autoplay: {
-                    delay: 3500,
+                    delay: 3000,
                     disableOnInteraction: false,
                 },
                 slidesPerView: 1,
             });
         });
+    });
 
-        $(document).ready(function() {
-            $(".btn-detail-berita").on("click", function() {
-                var beritaId = $(this).data("id");
+    document.addEventListener('DOMContentLoaded', function() {
+        new Swiper('.berita-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+        });
+    });
 
-                $.ajax({
-                    url: "/berita/detail/" + beritaId,
-                    type: "GET",
-                    success: function(response) {
-                        // Set teks
-                        $("#modal-judul").text(response.judul);
-                        $("#modal-isi").text(response.isi_berita);
-                        $("#modal-tanggal").text(response.tanggal);
+    $(document).ready(function() {
+        $(".btn-detail-berita").on("click", function() {
+            var beritaId = $(this).data("id");
 
-                        // Kosongkan dulu gambar sebelumnya
-                        $("#modal-gambar-wrapper").empty();
+            $.ajax({
+                url: "/berita/detail/" + beritaId,
+                type: "GET",
+                success: function(response) {
+                    // Set teks
+                    $("#modal-judul").text(response.judul);
+                    $("#modal-isi").text(response.isi_berita);
+                    $("#modal-tanggal").text(response.tanggal);
 
-                        // Ambil thumbnail (array JSON)
-                        let thumbnails = [];
+                    // Kosongkan dulu gambar sebelumnya
+                    $("#modal-gambar-wrapper").empty();
 
-                        try {
-                            thumbnails = typeof response.thumbnail === "string" ?
-                                JSON.parse(response.thumbnail) :
-                                response.thumbnail;
-                        } catch (e) {
-                            thumbnails = [];
-                        }
+                    // Ambil thumbnail (array JSON)
+                    let thumbnails = [];
 
-                        // Loop gambar
-                        thumbnails.forEach(function(path) {
-                            const fullPath = "/storage/" + path;
-                            const imgTag =
-                                `<img src="${fullPath}" class="rounded shadow w-full h-48 object-cover mb-2" alt="Foto berita">`;
-                            $("#modal-gambar-wrapper").append(imgTag);
-                        });
-
-                        // Tampilkan modal
-                        $("#modalDetailBerita").modal("show");
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                        alert("Terjadi kesalahan, coba lagi nanti.");
+                    try {
+                        thumbnails = typeof response.thumbnail === "string" ?
+                            JSON.parse(response.thumbnail) :
+                            response.thumbnail;
+                    } catch (e) {
+                        thumbnails = [];
                     }
-                });
+
+                    // Loop gambar
+                    thumbnails.forEach(function(path) {
+                        const fullPath = "/storage/" + path;
+                        const imgTag =
+                            `<img src="${fullPath}" class="rounded shadow w-full h-48 object-cover mb-2" alt="Foto berita">`;
+                        $("#modal-gambar-wrapper").append(imgTag);
+                    });
+
+                    // Tampilkan modal
+                    $("#modalDetailBerita").modal("show");
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                    alert("Terjadi kesalahan, coba lagi nanti.");
+                }
             });
         });
-    </script>
-    @include('components.modal-berita')
+    });
+</script>
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    });
+</script>
+
+@include('components.modal-berita')
 
 </body>
 

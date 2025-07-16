@@ -43,24 +43,22 @@
 </head>
 
 <body class="bg-white text-darkbrown">
-    <header class="bg-white shadow-md fixed w-full z-30 border-b border-darkyellow">
+    <header class="bg-[#7B1010] shadow-md fixed w-full z-30">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a class="text-2xl font-bold text-darkbrown flex items-center space-x-2" href="#home">
-                <span class="font-extrabold">
+            <a class="text-3xl font-bold text-darkbrown flex items-center space-x-2" href="#home">
+                <span class="text-white font-extrabold">
                     Website UMKM RW
                 </span>
             </a>
             <nav>
                 <ul class="hidden md:flex space-x-10 font-semibold text-darkbrown">
                     <li>
-                        <a class="hover:text-darkyellow transition" href="{{ route('welcome') }}">
+                        <a class="hover:text-darkyellow transition text-white text-xl" href="{{ route('welcome') }}">
                             Home Page
                         </a>
                     </li>
                 </ul>
-                <button aria-label="Toggle menu"
-                    class="md:hidden text-darkbrown focus:outline-none focus:ring-2 focus:ring-darkyellow"
-                    id="menu-btn">
+                <button aria-label="Toggle menu" class="md:hidden text-darkbrown focus:outline-none" id="menu-btn">
                     <i class="fas fa-bars fa-lg"></i>
                 </button>
             </nav>
@@ -85,7 +83,15 @@
             </ul>
         </div>
     </header>
-
+    <!-- Loader -->
+    <div id="page-loader"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-300">
+        <div class="flex gap-2">
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow [animation-delay:-0.3s]"></div>
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow [animation-delay:-0.15s]"></div>
+            <div class="w-5 h-5 rounded-full animate-bounce bg-darkyellow"></div>
+        </div>
+    </div>
     <main class="pt-24 max-w-7xl mx-auto px-6">
         <!-- Katalog UMKM -->
         <section class="mb-20" id="katalog-umkm">
@@ -234,5 +240,16 @@
 
 
 </body>
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    });
+</script>
 
 </html>
