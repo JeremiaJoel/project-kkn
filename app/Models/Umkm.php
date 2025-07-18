@@ -21,7 +21,8 @@ class Umkm extends Model
         'shopee',
         'tokopedia',
         'tiktok',
-        'rw_id'
+        'rw_id',
+        'gmaps'
     ];
 
     protected $casts = [

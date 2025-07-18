@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Rw;
 use App\Models\Umkm;
 use App\Models\Berita;
+use App\Models\Profil;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
     public function index()
     {
-        $rws = Rw::all();
-        // $umkms = Umkm::with('rw')->get(); // relasi ke RW
+        $profil = Profil::first();        // $umkms = Umkm::with('rw')->get(); // relasi ke RW
         // $berita = Berita::with(['umkm', 'rw'])->latest()->get(); // relasi ke UMKM dan RW
         $umkms = Umkm::all(); // relasi ke RW
         $berita = Berita::all();
-        return view('welcome', compact('rws', 'umkms', 'berita'));
+        return view('welcome', compact('profil', 'umkms', 'berita'));
     }
 
     public function katalogPage()

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\RWResource\Pages;
+namespace App\Filament\Resources\ProfilResource\Pages;
 
-use App\Filament\Resources\RWResource;
+use App\Filament\Resources\ProfilResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditRW extends EditRecord
+class EditProfil extends EditRecord
 {
-    protected static string $resource = RWResource::class;
+    protected static string $resource = ProfilResource::class;
 
     protected function getHeaderActions(): array
     {

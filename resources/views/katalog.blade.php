@@ -58,7 +58,7 @@
                         </a>
                     </li>
                 </ul>
-                <button aria-label="Toggle menu" class="md:hidden text-darkbrown focus:outline-none" id="menu-btn">
+                <button aria-label="Toggle menu" class="md:hidden text-white focus:outline-none" id="menu-btn">
                     <i class="fas fa-bars fa-lg"></i>
                 </button>
             </nav>
@@ -157,7 +157,8 @@
                             class="relative w-full aspect-[4/3] overflow-hidden rounded-t-lg border-2 border-darkyellow bg-white">
                             <template x-for="(image, index) in images" :key="index">
                                 <img x-show="currentSlide === index" x-transition :src="'/storage/' + image"
-                                    alt="Foto UMKM" class="absolute inset-0 w-full h-full object-contain" />
+                                    alt="Foto UMKM {{ $umkm->nama_umkm }} slide ke-{index + 1}"
+                                    class="absolute inset-0 w-full h-full object-contain" />
                             </template>
 
                             <button @click="prev"
@@ -183,6 +184,16 @@
                             <div class="mt-4 text-sm">
                                 <span class="font-semibold">Alamat:</span><br>
                                 {{ $umkm->alamat }}
+                                @if (!empty($umkm->gmaps))
+                                    <div class="mt-4 text-sm">
+                                        <span class="font-semibold">Maps:</span><br>
+                                        <a href="{{ $umkm->gmaps }}" target="_blank"
+                                            class="text-blue-600 hover:underline">
+                                            Lihat Lokasi
+                                        </a>
+                                    </div>
+                                @endif
+
                             </div>
 
                             <div class="mt-4 flex space-x-4 text-2xl text-darkyellow">
@@ -204,52 +215,30 @@
         </section>
     </main>
     <footer class="bg-white border-t border-darkyellow text-darkbrown py-8">
-        <div class="max-w-7xl mx-auto px-6 text-center md:text-left md:flex md:justify-between md:items-center">
-            <div class="mb-4 md:mb-0">
-                <h3 class="text-lg font-semibold">
-                    Desa Modern
-                </h3>
-                <p>
-                    Jl. Merdeka No. 123, Kecamatan Maju, Kabupaten Sejahtera
-                </p>
-                <p>
-                    Email: info@desamodern.id | Telp: 021-12345678
-                </p>
-            </div>
-            <div class="flex justify-center space-x-6 text-xl">
-                <a aria-label="Facebook" class="hover:text-darkyellow" href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a aria-label="Twitter" class="hover:text-darkyellow" href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a aria-label="Instagram" class="hover:text-darkyellow" href="#">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a aria-label="YouTube" class="hover:text-darkyellow" href="#">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-
         <div class="mt-6 text-center text-sm text-darkyellow">
             © 2025 Desa Plamongan Sari. Semua hak cipta dilindungi. <br>
             Dibangun oleh <strong>Tim KKNT-105 Kelompok 2 UNDIP</strong>.
         </div>
     </footer>
 
+    <script>
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('page-loader');
+            if (loader) {
+                loader.classList.add('opacity-0');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        });
+    </script>
 </body>
-<script>
-    window.addEventListener('load', function() {
-        const loader = document.getElementById('page-loader');
-        if (loader) {
-            loader.classList.add('opacity-0');
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-        }
-    });
-</script>
 
 </html>

@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources;
 
+use App\Models\rw;
 use Filament\Forms;
 use App\Models\Umkm;
-use App\Models\rw;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use function Laravel\Prompts\select;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextArea;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UmkmResource\Pages;
+
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UmkmResource\RelationManagers;
-
-use function Laravel\Prompts\select;
 
 class UmkmResource extends Resource
 {
@@ -33,7 +35,7 @@ class UmkmResource extends Resource
         return $form
             ->schema([
                 TextInput::make('nama_umkm')
-                    ->label('Nama Produk')
+                    ->label('Nama Toko')
                     ->required(),
                 TextInput::make('pemilik')
                     ->label('Nama Pemilik UMKM')
@@ -50,8 +52,9 @@ class UmkmResource extends Resource
                     ->required()
                     ->options([
                         'makanan' => 'Makanan',
-                        // 'reviewing' => 'Reviewing',
-                        // 'published' => 'Published',
+                        'pakaian' => 'Pakaian',
+                        'perlengkapan' => 'Perlengkapan',
+                        'minuman' => 'Minuman'
                     ]),
                 TextArea::make('deskripsi')
                     ->label('Deskripsi Produk')
@@ -59,10 +62,6 @@ class UmkmResource extends Resource
                 TextInput::make('alamat')
                     ->label('Lokasi UMKM')
                     ->required(),
-                Select::make('rw_id')
-                    ->label('Lokasi RW')
-                    ->required()
-                    ->options(Rw::pluck('nama_rw', 'id')), // ['id' => 'nama_rw']
                 FileUpload::make('foto')
                     ->label('Foto')
                     ->image()
@@ -71,16 +70,22 @@ class UmkmResource extends Resource
                     ->imagePreviewHeight('150')
                     ->required()
                     ->maxSize(2048),
-                TextInput::make('instagram')
-                    ->label('Link Instagram'),
-                TextInput::make('whatsapp')
-                    ->label('Link Whatsapp'),
-                TextInput::make('shopee')
-                    ->label('Link Shopee'),
-                TextInput::make('tokopedia')
-                    ->label('Link Tokopedia'),
-                TextInput::make('tiktok')
-                    ->label('Link Tiktok'),
+                TextInput::make('gmaps')
+                    ->label('Link Google Maps'),
+                Section::make('sosial media')->schema([
+                    TextInput::make('instagram')
+                        ->label('Link Instagram'),
+                    TextInput::make('whatsapp')
+                        ->label('Link Whatsapp'),
+                    TextInput::make('tiktok')
+                        ->label('Link Tiktok')
+                ]),
+                Section::make('Online Shop')->schema([
+                    TextInput::make('shopee')
+                        ->label('Link Shopee'),
+                    TextInput::make('tokopedia')
+                        ->label('Link Tokopedia'),
+                ]),
             ]);
     }
 
@@ -88,19 +93,31 @@ class UmkmResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('nama_umkm')
+                    ->label('nama UMKM')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('pemilik')
+                    ->label('Nama Pemilik')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('kontak')
+                    ->label('Kontak Pemilik')
+                    ->searchable(),
+                TextColumn::make('kategori')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
+        // ->bulkActions([
+        //     Tables\Actions\BulkActionGroup::make([
+        //         Tables\Actions\DeleteBulkAction::make(),
+        //     ]),
+        // ]);
     }
 
     public static function getRelations(): array

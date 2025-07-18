@@ -30,7 +30,7 @@ class BeritaResource extends Resource
     // protected static ?string $navigationGroup = 'Kelola';
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-    protected static ?string $navigationLabel = 'Berita UMKM';
+    protected static ?string $navigationLabel = 'Berita RW';
     public static ?string $slug = 'kelola-berita';
     public static function form(Form $form): Form
     {

@@ -12,9 +12,7 @@ class Berita extends Model
         'judul',
         'isi_berita',
         'tanggal',
-        'thumbnail',
-        'umkm_id',
-        'rw_id'
+        'thumbnail'
     ];
     protected $casts = [
         'thumbnail' => 'array',
